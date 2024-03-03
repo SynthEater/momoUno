@@ -18,7 +18,7 @@
       -connectez-vous avec votre code Python ou testez connection avec telnet
        ex commande: telnet [votreIP] [PORT]
       -sinon connectez-vous par telnet avec putty
-[logo](smallLogo.png)
+![logo](smallLogo.png)
 
       
 
