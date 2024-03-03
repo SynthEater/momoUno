@@ -1,4 +1,4 @@
-![logo](smallLogo.png)
+![logo](image/smallLogo.png)
 # Pour tester la connexion au serveur TCP:
 ## 1-Installer nodejs
       -Windows: allez sur leur site
