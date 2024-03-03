@@ -1,21 +1,24 @@
 ![logo](smallLogo.png)
 # Pour tester la connexion au serveur TCP:
 ## 1-Installer nodejs
-      -Windows: aller sur leur site
-      -Linux: installer le package 'nodejs'
+      -Windows: allez sur leur site
+      -Linux: installez le package 'nodejs'
 
 ## 2-Cloner ou copier
-      -telecharger github desktop et clonez la repo
-      -(sinon)copier le contenu du fichier 'TCPserver.js' ci-dessus
-       et copier dans un .js file
+      -telechargez Github Desktop et clonez la repo
+      -(sinon)copiez le contenu du fichier 'TCPserver.js' ci-dessus
+       et copiez le dans un .js file (appellez-le TCPserver.js)
 
 ## 3-Runner le serveur
-      -dans terminal faire commande: node TCPserver.js (dans bon folder)
-       si probleme faire commande: node (pour verif node install)
-       ou commande: node -v (verif node version)
+      -dans terminal de vscode (ou autre) faites commande: node TCPserver.js
+      -Vous devriez voir: 0.0.0.0 et le # de port qu'on utilise
+       si oui, le serveur ecoute sur ce port et accepte toutes les addresses
+
 
 ## 4-Se connecter au serveur
-      -se connecter avec votre code Python ou tester connection avec telnet,
-       (ex: telnet [votreIP] [port]) ou avec putty
+      -connectez-vous avec votre code Python ou testez connection avec telnet
+       ex commande: telnet [votreIP] [PORT]
+      -sinon connectez-vous par telnet avec putty
+
       
 
