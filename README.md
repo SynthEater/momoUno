@@ -18,7 +18,8 @@
 
 ## 4-Se connecter au serveur
       -connectez-vous avec votre code Python ou testez connection avec telnet
-       ex commande: telnet [votreIP] [PORT]
+       commande: telnet [IPserveur] [PORT] ex: telnet 192.168.0.1 1647
+       (IPserveur = ip de votre carte wifi)
       -sinon connectez-vous par telnet avec putty
       -dans le terminal du serveur vous allez voir: client connected (ip)
 
