@@ -5,9 +5,9 @@
       -Linux: installez le package 'nodejs'
 
 ## 2-Cloner ou copier
-      -telechargez Github Desktop et clonez la repo
+      -telechargez Github Desktop, clonez la repo et ouvrez dans vscode
       -(sinon)copiez le contenu du fichier 'TCPserver.js' ci-dessus
-       et copiez le dans un .js file (appellez-le TCPserver.js)
+       et collez le dans un .js file (appellez-le TCPserver.js)
 
 ## 3-Runner le serveur
       -dans le terminal de vscode (ou autre) faites commande: node TCPserver.js
