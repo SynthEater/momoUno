@@ -1,3 +1,3 @@
 #README image test
 
-![logo](logo_image.png)
+![logo](smallLogo.png)
