@@ -7,7 +7,7 @@ const server = net.createServer(socket => {
 
 
     //Show that a client has connected(+ his ip)
-    console.log('CLIENT('+ socket.remoteAddress + ') CONNECTED');
+    console.log('CLIENT CONNECTED (' + socket.remoteAddress + ')');
 
     //Send hello back to client on socket
     socket.write('\nWelcome to TCP Server!\n');
@@ -23,7 +23,7 @@ const server = net.createServer(socket => {
 
     //Show that a client has disconnected(+ his ip)
     socket.on('end', () => {
-        console.log('CLIENT('+ socket.remoteAddress + ') DISCONNECTED');
+        console.log('CLIENT DISCONNECTED ('+ socket.remoteAddress + ')');
     })
 })
 
