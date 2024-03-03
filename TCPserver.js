@@ -10,7 +10,7 @@ const server = net.createServer(socket => {
     console.log('CLIENT('+ socket.remoteAddress + ') CONNECTED');
 
     //Send hello back to client on socket
-    socket.write('\nWelcome to TCP Sevrer!\n');
+    socket.write('\nWelcome to TCP Server!\n');
 
     //Create a 'prompt' for client
     socket.write('$:');
