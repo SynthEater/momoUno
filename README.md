@@ -1,7 +1,7 @@
 ![logo](smallLogo.png)
 # Pour tester connexion serveur TCP:
 ## 1-Installer nodejs
-    (*Windows: aller sur leur site | *Linux: installer le package 'nodejs') 
+    Windows: aller sur leur site | Linux: installer le package 'nodejs'
 
 ## 2-Cloner cette repository ou copier le code du serveur
 
@@ -12,6 +12,6 @@
 
 ## 4-Se connecter au serveur
       se connecter avec votre code Python ou tester connection avec telnet,
-      (ex: telnet [votreIP] [port]) ou avec putty en mettant votre ip/port
+      (ex: telnet [votreIP] [port]) ou avec putty
       
 
