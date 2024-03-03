@@ -4,6 +4,7 @@
     Windows: aller sur leur site | Linux: installer le package 'nodejs'
 
 ## 2-Cloner cette repository ou copier le code du serveur
+      vous pouvez ensuite simplement coller le code dans un .js file
 
 ## 3-Runner le serveur
       dans terminal faire commande: node TCPserver.js
