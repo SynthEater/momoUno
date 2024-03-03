@@ -1,5 +1,5 @@
 ![logo](smallLogo.png)
-# Pour tester connexion serveur TCP:
+# Pour tester connexion au serveur TCP:
 ## 1-Installer nodejs
     Windows: aller sur leur site | Linux: installer le package 'nodejs'
 
