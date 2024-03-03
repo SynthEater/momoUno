@@ -5,12 +5,13 @@
 
 ## 2-Cloner cette repository ou copier le code du serveur
 
-## 3-Runner le serveur -> dans terminal faire commande: node TCPserver.js
+## 3-Runner le serveur
+      dans terminal faire commande: node TCPserver.js
       si probleme faire commande: node (pour verif node install) ou commande:
       node -v (verif node version)
 
-## 4-Se connecter au serveur avec votre code Python
-      ou tester connection avec telnet, (ex: telnet [votreIP] [port])
-      ou avec putty en mettant votre ip et le bon port
+## 4-Se connecter au serveur
+      se connecter avec votre code Python ou tester connection avec telnet,
+      (ex: telnet [votreIP] [port]) ou avec putty en mettant votre ip/port
       
 
