@@ -41,7 +41,7 @@ server.listen(PORT, HOST, () => {
 })
 
 // Function to send a message to a specific client
-//Use array index of the client you want to talk to
+//Use array index of the client you want to talk to in 'clients' array
 function sendToClient(clientSocket, message) {
     clientSocket.write(message);
 }
