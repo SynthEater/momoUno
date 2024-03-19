@@ -1,3 +1,5 @@
+clients = []; 
+
 
 // Use nodejs 'Net' module
 const net = require('node:net');
@@ -5,7 +7,9 @@ const net = require('node:net');
 // Creation of the server
 const server = net.createServer(socket => {
 
-
+    //on connection, store each socket in 'clients' array
+    clients.push(socket);
+    
     //Show that a client has connected(+ his ip)
     console.log('CLIENT CONNECTED (' + socket.remoteAddress + ')');
 
@@ -19,6 +23,7 @@ const server = net.createServer(socket => {
     //Print data received from client
     socket.on('data', data => {
         console.log(' client(' + socket.remoteAddress + '): ' + data.toString());
+        socket.write('message: ' + data.toString() + 'recu');
     })
 
     //Show that a client has disconnected(+ his ip)
@@ -35,3 +40,8 @@ server.listen(PORT, HOST, () => {
     console.log(`${HOST} : ${PORT}`);
 })
 
+// Function to send a message to a specific client
+//Use array index of the client you want to talk to
+function sendToClient(clientSocket, message) {
+    clientSocket.write(message);
+}
