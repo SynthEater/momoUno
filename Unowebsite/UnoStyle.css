@@ -1,0 +1,49 @@
+#bleu{
+
+    position: absolute;
+    left: 150px;
+    top: 150px;
+}
+
+#vert{
+    position: absolute;
+    left: 150px;
+    bottom: 150px;
+}
+
+#jaune{
+    position: absolute;
+    right: 150px;
+    top: 150px;
+}
+
+#rouge{
+    position: absolute;
+    right: 150px;
+    bottom: 150px;
+}
+
+#carte{
+    position: absolute;
+    top: 18%;
+    left: 34.3%;
+}
+
+#joueurtour{
+    position: absolute;
+    top: 5%;
+    left: 42.5%;
+}
+
+#colorblind{
+    position: absolute;
+    bottom: 10%;
+    left: 46%;
+}
+
+#prankster{
+    position: absolute;
+    bottom: 20%;
+    right: 35%;
+
+}
