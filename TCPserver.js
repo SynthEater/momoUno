@@ -1,5 +1,6 @@
 clients = []; 
 
+//variables de 'joueurs' qui vont contenir sockets objects de chaque connection
 let j1, j2, j3, j4;
 
 // Use nodejs 'Net' module
@@ -46,6 +47,7 @@ server.listen(PORT, HOST, () => {
     console.log(`${HOST} : ${PORT}`);
 })
 
+//associe variables joueurs au array de sockets
 j1 = clients[0];
 j2 = clients[1];
 j3 = clients[2];
