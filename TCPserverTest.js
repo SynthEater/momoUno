@@ -15,6 +15,13 @@ const server = net.createServer(socket => {
     //Show that a client has connected(+ his ip)
     console.log('CLIENT CONNECTED (' + socket.remoteAddress + ')');
 
+    //Send hello back to client on socket
+    socket.write('\nWelcome to TCP Server!\n');
+
+    //Create a 'prompt' for client
+    socket.write('$:');
+
+
     //Print data received from client
     socket.on('data', data => {
         console.log(' client(' + socket.remoteAddress + '): ' + data.toString());
@@ -30,14 +37,6 @@ const server = net.createServer(socket => {
         console.log('AN ERROR MADE THE SERVER SHUT DOWN!');
         socket.write('AN ERROR MADE THE SERVER SHUT DOWN!');
     })
-})
-
-server.on('connection', socket => {
-
-  //Send hello back to client on socket
-  socket.write('\nWelcome to TCP Server!\n');
-
-  socket.clientIp = socket.remoteAddress;
 })
 
 
