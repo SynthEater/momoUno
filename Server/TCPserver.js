@@ -45,6 +45,8 @@ server.on('connection', socket => {
 
     //Show that a client has connected(+ his ip)
     console.log('CLIENT CONNECTED (' + socket.clientIp + ')');
+
+    
 });
 
 

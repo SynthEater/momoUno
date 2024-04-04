@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="UnoStyle.css">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../TCPserver.js"></script>
     </head>
     
     <style>
@@ -14,7 +15,7 @@
             background-size: 100vw 100vh;
         }
     </style>
-    <body >
+    <body>
 
 
     <divtour id="tour">
@@ -23,7 +24,9 @@
 
     <divbleu id="bleu">
         <img id="joueurbleuprofile" src="profile/pawn_blue.png" style="width:105px; height: 105px;" >
-        <p style="color: rgb(37, 117, 221);">Joueur bleu</p>
+        <p style="color: rgb(37, 117, 221);">Joueur bleu
+        <label id="ipjoueurbleu" >IP</label>
+        </p>
         <p style="color: white;">Nombre de carte: 
         <label id="nbrcartebleu" style="color: white;">0</label>
         </p>
@@ -31,7 +34,9 @@
 
     <divvert id="vert">
         <img id="joueurvertprofile" src="profile/pawn_glass_green.png" style="width:105px; height: 105px;" >
-        <p style="color: rgb(36, 201, 36);">Joueur Vert</p>
+        <p style="color: rgb(36, 201, 36);">Joueur Vert
+            <label id="ipjoueurvert">IP</label>
+        </p>
         <p style="color: white;">Nombre de carte: 
         <label id="nbrcartevert" style="color: white;">0</label>
         </p>
@@ -39,7 +44,9 @@
 
     <divjaune id="jaune">
         <img id="joueurjauneprofile" src="profile/pawn_glass_yellow.png" style="width:105px; height: 105px;" >
-        <p style="color: yellow;">Joueur Jaune</p>
+        <p style="color: yellow;">Joueur Jaune
+            <label id="ipjoueurjaune">IP</label>
+        </p>
         <p style="color: white;">Nombre de carte: 
         <label id="nbrcartejaune" style="color: white;">0</label>
         </p>
@@ -47,7 +54,9 @@
 
     <divrouge id="rouge">
         <img id="joueurrougeprofile" src="profile/pawn_glass_red.png" style="width:105px; height: 105px;" >
-        <p style="color: rgb(235, 21, 21);">Joueur Rouge</p>
+        <p style="color: rgb(235, 21, 21);">Joueur Rouge
+            <label id="ipjoueurrouge">IP</label>
+        </p>
         <p style="color: white;">Nombre de carte: 
         <label id="nbrcarterouge" style="color: white;">0</label> 
         </p>
@@ -73,19 +82,21 @@
 
 
 <script>
-    /*{   
+    {   
         function update(){
             let labelElement = document.getElementById("joueurtour");
             labelElement.innerText = "Joueur Bleu";
+            
 
             let imageElement = document.getElementById("Carteprincipale");
-            imageElement.src = "uno_assets_2d/PNGs/large/green_3_large.png";
+            imageElement.src = "uno_assets_2d/PNGs/large/Y1.png";
 
+            document.getElementById("ipjoueurrouge").innerHTML() = 'test';
 
         }
-    };*/
+    }
     
-    $(document).ready(function()
+   /* $(document).ready(function()
         {
                     function update(){
                     var mois = $("#m").val();
@@ -98,9 +109,8 @@
                 $("#showsigne").text(data);
                 });
             }
-        });
+        });*/
 
 </script>
-
 
 </html>
