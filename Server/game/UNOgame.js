@@ -30,7 +30,7 @@ let playerIP = [j1,j2,,150];
 let livestack = [];
 
 //Ajuster le nombre de carte distribuees au debut
-let NBCARDSSTART = 3;
+let NBCARDSSTART = 7;
 
 let playedCard = '2j';
 
@@ -87,7 +87,7 @@ function turn1stCard(){
   livestack.push(firstCard);
 }
 
-function startDraw(){
+function distribute(){
   //j1
   for(let i = 0; i < NBCARDSSTART; i++){
       j1.push(stack.splice(getRandomInt(stack.length), 1));
@@ -106,10 +106,14 @@ function startDraw(){
   }
 }
 
+
+/*  Remplacer par main loop()?
 function startGame(){
   turn1stCard();
   startDraw();
 }
+*/
+
 
 //faire piger un joueur
 function draw(pl){
@@ -151,7 +155,7 @@ function checkIndexNumber(joueur){
   }
 }
 
-
+/*
 function game(pl){
 
 
@@ -161,6 +165,7 @@ function game(pl){
   console.log(playedCard);
   console.log(checkCardinHand);
 }
+*/
 
 function turnOrder(){
 
@@ -224,7 +229,8 @@ function playCard(){
 
 
 
-checkCard('9v','3b');
+// mettre variable pour etre dynamic? 9v remplacer par lastCard et 3b remplacer par Card
+//checkCard('9v','3b');
 
 
 function checkCard(lastCard, Card){
@@ -321,13 +327,6 @@ function game(pl) {
 
 
 
-// Function to update turn based on direction and skipping
-  // Apply draw flag from card effects
-  if (drawFlag > 0) {
-    for (let i = 0; i < drawFlag; i++) {
-      draw(turn);
-    }
-    drawFlag = 0;
-  }
 
-  console.log(`Current player: ${turn}`);
+distribute();
+printHand(j1);
