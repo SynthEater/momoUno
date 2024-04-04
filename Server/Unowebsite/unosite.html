@@ -3,7 +3,7 @@
 <html>
     <head>
         <title>SiteUno.montmorency.qc.ca</title>
-        <link rel="stylesheet" href="Style.css">
+        <link rel="stylesheet" href="UnoStyle.css">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
@@ -65,9 +65,42 @@
         <label id="prankster" style="color: black; font-size: 40%;">Simon y'est fort</label>
     </divprank>
 
+    <div class="Centrecourleur">
+        <input style="background-color: red;" type="button" name="boutonrouge" id="btnrouge" value="Rouge" onclick="update()">
+    </div>
     </body>
 
-    <script>
 
-    </script>
+
+<script>
+    /*{   
+        function update(){
+            let labelElement = document.getElementById("joueurtour");
+            labelElement.innerText = "Joueur Bleu";
+
+            let imageElement = document.getElementById("Carteprincipale");
+            imageElement.src = "uno_assets_2d/PNGs/large/green_3_large.png";
+
+
+        }
+    };*/
+    
+    $(document).ready(function()
+        {
+                    function update(){
+                    var mois = $("#m").val();
+                    var jour = $("#j").val();
+                    var url="../testserver/testserver.php?jour="+jour+"&mois="+mois;
+
+                    $.get(url, function(data, status){
+                alert (data);
+                $("#photo").attr('src', "Images/"+data+".jpg");
+                $("#showsigne").text(data);
+                });
+            }
+        });
+
+</script>
+
+
 </html>
