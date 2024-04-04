@@ -322,20 +322,6 @@ function game(pl) {
 
 
 // Function to update turn based on direction and skipping
-function turnChange() {
-  if (!clockwise) {
-    turn--;
-  } else {
-    turn++;
-  }
-
-  // Handle turn wrap-around
-  if (turn === 0) {
-    turn = 4;
-  } else if (turn === 5) {
-    turn = 1;
-  }
-
   // Apply draw flag from card effects
   if (drawFlag > 0) {
     for (let i = 0; i < drawFlag; i++) {
@@ -345,5 +331,3 @@ function turnChange() {
   }
 
   console.log(`Current player: ${turn}`);
-}
-
