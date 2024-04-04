@@ -190,9 +190,6 @@ function turnOrder(){
 }
 
 
-
-
-
 function turnChange(){
   if(!clockwise)
       turn--;
