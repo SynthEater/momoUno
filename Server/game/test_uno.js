@@ -151,7 +151,7 @@ gameLoop();
         for (let i = 0; i < players.length; i++) {
             if (players[i].length === 0) {
                 console.log(`Player ${i + 1} wins!`);
-                process.exit(); // Exit the game
+                //process.exit(); // Exit the game
             }
         }
     }

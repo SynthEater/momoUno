@@ -288,6 +288,10 @@ const readline = require('node:readline').createInterface({
         stack = [...livestack]; // Temporary placeholder for reshuffling
         livestack = [];
       }
+
+      if (checkWinCondition()) {
+        break; // Exit the game loop if a player has won
+    }
   
       // Handle player turn
       game(turn);
@@ -296,6 +300,7 @@ const readline = require('node:readline').createInterface({
       turnChange();
     }
   }
+
   
   // Handle a player's turn
   function game(pl) {
@@ -324,6 +329,25 @@ const readline = require('node:readline').createInterface({
   
   
   
-  
+  function checkWinCondition() {
+    // Check each player's hand for emptiness
+    if (j1.length === 0) {
+        console.log("Player 1 wins!");
+        return true;
+    } else if (j2.length === 0) {
+        console.log("Player 2 wins!");
+        return true;
+    } else if (j3.length === 0) {
+        console.log("Player 3 wins!");
+        return true;
+    } else if (j4.length === 0) {
+        console.log("Player 4 wins!");
+        return true;
+    }
+    return false; // No winner yet
+}
+
+ 
+
   distribute();
   printHand(j1);
