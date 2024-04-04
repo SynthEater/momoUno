@@ -135,14 +135,27 @@ const readline = require('node:readline').createInterface({
     }
   }
   
-  function takeInput(){
-    //demande jouer entrer carte
-    readline.question('joueur ' + turn + ' jouez carte: \n', carte => {
-        playedCard = carte;
+ 
+
+  
+  function takeInput() {
+    // Prompt player for action
+    readline.question('Player ' + turn + ', choose a card to play (or type "draw" to draw a card): ', cardChoice => {
+        // Handle player action
+        if (cardChoice.toLowerCase() === 'draw') {
+            draw(turn); // Draw a card
+        } else {
+            playedCard = cardChoice.trim().toLowerCase();
+            playCard(turn); // Play the selected card
+        }
         readline.close();
     });
-  }
-  
+}
+
+
+
+
+
   function checkIndexNumber(joueur){
   
     for(let i = 0; i < joueur.length; i++){
@@ -188,23 +201,26 @@ const readline = require('node:readline').createInterface({
         draw(turn);
     }
   }
-  
-  
-  function turnChange(){
-    if(!clockwise)
-        turn--;
-    if(turn == 0){
-        turn = 4;
-        }
-     else{
-        turn++;
-        if(turn == 5){
-            turn = 1;
+
+
+  function turnChange() {
+    if (clockwise) {
+        turn = (turn % 4) + 1; // Move to the next player
+    } else {
+        turn = (turn === 1) ? 4 : turn - 1; // Move to the previous player
+    }
+    // Handle skipping turns for special cards
+    if (playedCard[0] === 'S') {
+        if (clockwise) {
+            turn = (turn % 4) + 1;
+        } else {
+            turn = (turn === 1) ? 4 : turn - 1;
         }
     }
-    console.log(turn);
-  
-  }
+}
+
+
+
   
   function skipTurn(){
     if(!clockwise){
@@ -230,16 +246,21 @@ const readline = require('node:readline').createInterface({
   //checkCard('9v','3b');
   
   
-  function checkCard(lastCard, Card){
-    if(lastCard[0] == Card[0] || 
-       lastCard[1] == Card[1] ){
-        console.log('Can play card');
-        return true;
-       } else {
-        console.log('Cannot play card');
-        return false;
-    }
+  function checkCard(lastCard, card) {
+    const lastCardColor = lastCard[lastCard.length - 1]; // Extract last card color
+    const cardColor = card[card.length - 1]; // Extract card color
+    const lastCardValue = lastCard.substring(0, lastCard.length - 1); // Extract last card value
+    const cardValue = card.substring(0, card.length - 1); // Extract card value
+
+    // Check if the card matches the color or value of the last card
+    return (lastCardColor === cardColor || lastCardValue === cardValue);
   }
+
+
+
+
+
+
   
   
     
@@ -404,30 +425,58 @@ function checkCard(lastCard, card) {
 
     // Check if the card matches the color or value of the last card
     return (lastCardColor === cardColor || lastCardValue === cardValue);
-}
+}  */
 
 
 
+/*
+
+VIEUX fonctions
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  function checkCard(lastCard, Card){
+    if(lastCard[0] == Card[0] || 
+       lastCard[1] == Card[1] ){
+        console.log('Can play card');
+        return true;
+       } else {
+        console.log('Cannot play card');
+        return false;
+    }
+  }
   
+
+
+   function turnChange(){
+    if(!clockwise)
+        turn--;
+    if(turn == 0){
+        turn = 4;
+        }
+     else{
+        turn++;
+        if(turn == 5){
+            turn = 1;
+        }
+    }
+    console.log(turn);
   
+  }
+
+
+
+ function takeInput(){
+    //demande jouer entrer carte
+    readline.question('joueur ' + turn + ' jouez carte: \n', carte => {
+        playedCard = carte;
+        readline.close();
+    });
+  }
   
-  */ 
+
+
+
+
+
+*/
