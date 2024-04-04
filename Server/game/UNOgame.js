@@ -24,7 +24,7 @@ let pl1;
 //
 
 
-let playerIP = [j1,j2,,150];
+let playerIP = [j1,j2,,150];   //?
 
 //STACK THAT WE PLAY ON
 let livestack = [];
