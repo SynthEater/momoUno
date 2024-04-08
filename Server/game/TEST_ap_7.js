@@ -127,9 +127,12 @@ function turnChange() {
     }
 }
 
-function skipTurn() {
-    turn += clockwise ? 2 : -2;
-}
+function skipTurn(){
+    if(!clockwise){
+        turn -2;
+    }else
+        turn +2;
+  }
 
 function playCard() {
     if (checkIndexNumber(playerHands[turn - 1])) {
