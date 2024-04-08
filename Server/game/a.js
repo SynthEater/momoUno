@@ -368,10 +368,15 @@ const readline = require('node:readline').createInterface({
     return false; // No winner yet
 }
 
- 
+ mainLoop();
 
+
+
+
+ 
+/*
   distribute();
-  printHand(j1);
+  printHand(j1);*/
 
   /*
   AFFAIRE QUE CHAT A DIT DE CHANGER
