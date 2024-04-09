@@ -319,6 +319,7 @@ const readline = require('node:readline').createInterface({
   
       // Update turn based on direction and skipping
       turnChange();
+      distribute();
     }
   }
 
@@ -369,13 +370,13 @@ const readline = require('node:readline').createInterface({
 }
 
  mainLoop();
-
+ 
 
 
 
  
 /*
-  distribute();
+
   printHand(j1);*/
 
   /*
