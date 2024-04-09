@@ -296,11 +296,11 @@ const readline = require('node:readline').createInterface({
      // Ou le code va s'executer jusqua la fin du jeu
   function mainLoop() {
     while (true) {
-      // Check for win condition (empty hand)
+     /* // Check for win condition (empty hand)
       if (playerHands[turn].length === 0) {
         console.log(`Player ${turn} wins!`);
         break;
-      }
+      }*/
   
       // Check if deck is empty (need to shuffle back in played cards)
       if (stack.length === 0) {
