@@ -14,7 +14,6 @@ let j1 = [], j2 = [], j3 = [], j4 = [];
 
 let playerHands = [j1, j2, j3, j4];
 
-
 let livestack = [];
 let NBCARDSSTART = 7;
 let playedCard = '2j';
@@ -47,38 +46,19 @@ function takeInput() {
       cardChoice = cardChoice.trim().toLowerCase();
       if (cardChoice === 'draw') {
           draw(turn);
-          game(turn); // Continue game after drawing
+          console.log('Current live stack:', livestack);
+          turnChange(); // Move to the next player's turn
+          takeInput(); // Prompt the next player for input
       } else {
-          playCard(playerHands[turn - 1], cardChoice);
+          playCard(playerHands[turn - 1], cardChoice, livestack);
+          console.log('Current live stack:', livestack);
+          turnChange(); // Move to the next player's turn
+          takeInput(); // Prompt the next player for input
       }
   });
 }
-/*
-function playCard(playerHand, playedCard) {
-  const cardIndex = playerHand.indexOf(playedCard);
-  if (cardIndex === -1) {
-      console.log('Invalid card selection. Try again.');
-      return;
-  }
 
-  if (livestack.length === 0) {
-      // If livestack is empty, push the played card onto it
-      livestack.push(playerHand.splice(cardIndex, 1)[0]);
-      console.log('Card played successfully.');
-      return;
-  }
-
-  const lastCard = livestack[0];
-  if (!checkCard(lastCard, playedCard)) {
-      console.log('Cannot play card. Try a different card or draw.');
-      return;
-  }
-
-  livestack.unshift(playerHand.splice(cardIndex, 1)[0]); // Remove card from player's hand and put it on top of the live stack
-  console.log('Card played successfully.');
-}*/
-
-function playCard(playerHand, playedCard) {
+function playCard(playerHand, playedCard, livestack) {
   const cardIndex = playerHand.indexOf(playedCard);
   if (cardIndex === -1) {
       console.log('Invalid card selection. Try again.');
@@ -89,8 +69,7 @@ function playCard(playerHand, playedCard) {
       // If livestack is empty, push the played card onto it
       livestack.push(playedCard);
   } else {
-      const lastCard = livestack[0];
-      if (!checkCard(lastCard, playedCard)) {
+      if (!checkCard(livestack, playedCard)) {
           console.log('Cannot play card. Try a different card or draw.');
           return;
       }
@@ -106,25 +85,23 @@ function playCard(playerHand, playedCard) {
   console.log('livestack', livestack);
 }
 
-
-function checkCard(lastCard, card) {
-  console.log('Last Card:', lastCard);
-  console.log('Played Card:', card);
-
-  const lastCardColor = lastCard[lastCard.length - 1]; // Extract last card color
+function checkCard(livestack, card) {
   const cardColor = card[card.length - 1]; // Extract card color
-  const lastCardValue = lastCard.substring(0, lastCard.length - 1); // Extract last card value
   const cardValue = card.substring(0, card.length - 1); // Extract card value
 
-  console.log('Last Card Color:', lastCardColor);
-  console.log('Card Color:', cardColor);
-  console.log('Last Card Value:', lastCardValue);
-  console.log('Card Value:', cardValue);
+  // Iterate over all cards in the livestack
+  for (const lastCard of livestack) {
+    const lastCardColor = lastCard[lastCard.length - 1]; // Extract last card color
+    const lastCardValue = lastCard.substring(0, lastCard.length - 1); // Extract last card value
 
-  // Check if the card matches the color or value of the last card
-  return (lastCardColor === cardColor || lastCardValue === cardValue);
+    // Check if the card matches the color or value of any card in the livestack
+    if (lastCardColor === cardColor || lastCardValue === cardValue) {
+      return true;
+    }
+  }
+
+  return false; // If no match found in the entire livestack
 }
-
 
 function turnChange() {
   if (playedCard[0] === 'S') {
@@ -136,22 +113,6 @@ function turnChange() {
       turn += 4;
   } else if (turn > 4) {
       turn -= 4;
-  }
-}
-
-function turnOrder() {
-  if (playedCard[0] === 'R') {
-      clockwise = !clockwise;
-  }
-  if (playedCard[0] === 'D') {
-      draw(turn);
-      draw(turn);
-  }
-  if (playedCard[0] === 'Q') {
-      draw(turn);
-      draw(turn);
-      draw(turn);
-      draw(turn);
   }
 }
 
@@ -168,7 +129,6 @@ function checkWinCondition() {
 function game(pl) {
   distribute();
   takeInput();
- 
 }
 
 game(turn);
