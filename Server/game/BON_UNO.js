@@ -40,6 +40,8 @@ function draw(pl) {
   playerHands[pl - 1].push(stack.splice(getRandomInt(stack.length), 1)[0]);
 }
 
+/*
+
 function takeInput() {
   console.log('Your current hand: ' + playerHands[turn - 1].join(', '));
   readline.question('Player ' + turn + ', choose a card to play (or type "draw" to draw a card): ', cardChoice => {
@@ -50,19 +52,25 @@ function takeInput() {
           turnChange(); // Move to the next player's turn
           takeInput(); // Prompt the next player for input
       } else {
-          playCard(playerHands[turn - 1], cardChoice, livestack);
-          console.log('Current live stack:', livestack);
-          turnChange(); // Move to the next player's turn
-          takeInput(); // Prompt the next player for input
+          const cardPlayedSuccessfully = playCard(playerHands[turn - 1], cardChoice, livestack);
+          if (!cardPlayedSuccessfully) {
+              // If the card couldn't be played, prompt the same player to try again
+              console.log('Invalid card selection. Try again.');
+              takeInput();
+          } else {
+              console.log('Current live stack:', livestack);
+              turnChange(); // Move to the next player's turn
+              takeInput(); // Prompt the next player for input
+          }
       }
   });
-}
+}*/
 
 function playCard(playerHand, playedCard, livestack) {
   const cardIndex = playerHand.indexOf(playedCard);
   if (cardIndex === -1) {
       console.log('Invalid card selection. Try again.');
-      return;
+      return false; // Card was not played successfully
   }
 
   if (livestack.length === 0) {
@@ -71,7 +79,7 @@ function playCard(playerHand, playedCard, livestack) {
   } else {
       if (!checkCard(livestack, playedCard)) {
           console.log('Cannot play card. Try a different card or draw.');
-          return;
+          return false; // Card was not played successfully
       }
 
       livestack.unshift(playedCard); // Put the played card on top of the live stack
@@ -83,8 +91,85 @@ function playCard(playerHand, playedCard, livestack) {
   console.log('Card played successfully.');
   console.log('Your current hand: ' + playerHands[turn - 1].join(', '));
   console.log('livestack', livestack);
+
+  return true; // Card was played successfully
 }
 
+
+
+
+
+
+function takeInput() {
+  console.log('Your current hand: ' + playerHands[turn - 1].join(', '));
+  readline.question('Player ' + turn + ', choose a card to play (or type "draw" to draw a card, or "pass turn"): ', cardChoice => {
+      cardChoice = cardChoice.trim().toLowerCase();
+      if (cardChoice === 'draw') {
+          draw(turn);
+          console.log('Current live stack:', livestack);
+          turnChange(); // Move to the next player's turn
+          takeInput(); // Prompt the next player for input
+      } else if (cardChoice === 'pass turn') {
+          console.log('Player ' + turn + ' passes their turn.');
+          turnChange(); // Move to the next player's turn
+          takeInput(); // Prompt the next player for input
+      } else {
+          const cardsToPlay = cardChoice.split(',').map(c => c.trim());
+          let allPlayedSuccessfully = true;
+          for (const card of cardsToPlay) {
+              const cardPlayedSuccessfully = playCard(playerHands[turn - 1], card, livestack);
+              if (!cardPlayedSuccessfully) {
+                  allPlayedSuccessfully = false;
+                  break;
+              }
+          }
+          if (!allPlayedSuccessfully) {
+              // If any card couldn't be played, prompt the same player to try again
+              console.log('Invalid card selection. Try again.');
+              takeInput();
+          } else {
+              console.log('Current live stack:', livestack);
+              takeInput(); // Prompt the same player for input again
+          }
+      }
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 function checkCard(livestack, card) {
   const cardColor = card[card.length - 1]; // Extract card color
   const cardValue = card.substring(0, card.length - 1); // Extract card value
@@ -102,6 +187,54 @@ function checkCard(livestack, card) {
 
   return false; // If no match found in the entire livestack
 }
+*/
+function checkCard(livestack, card) {
+  const cardColor = card[card.length - 1]; // Extract card color
+  const cardValue = card.substring(0, card.length - 1); // Extract card value
+
+  // Check if the card is a special card
+  if (cardValue === 'S' || cardValue === 'D' || cardValue === 'R' || cardValue === 'W') {
+    // Handle special cards based on type
+    switch (cardValue) {
+      case 'S': // Skip
+      //current turn +1 if played
+        // Skip can be played on any color (including empty livestack)
+        return true;
+      case 'R': // Reverse
+        // Reverse can be played on any color (including empty livestack)
+        return true;
+      case 'D': // Draw Two
+        // Draw Two can be played on any color, but ideally matching the last card's color if possible
+        return livestack.length === 0 || cardColor === livestack[0]?.[livestack[0].length - 1];
+      case 'W': // Wild
+        // Wild can be played on any color (including empty livestack)
+        // You can also choose a new color after playing Wild
+        return true;
+      default:
+        // This shouldn't happen, but handle unexpected card value
+        console.error("Invalid special card value:", cardValue);
+        return false;
+    }
+  } else {
+    // Check if the card matches the color or value of the top card in the livestack
+    if (livestack.length === 0) {
+      // Livestack is empty, any card can be played except Skip
+      return cardValue !== 'S';
+    } 
+    const lastCard = livestack[0];
+    const lastCardColor = lastCard[lastCard.length - 1]; // Extract last card color
+    const lastCardValue = lastCard.substring(0, lastCard.length - 1); // Extract last card value
+
+    // Check for valid card based on color or value match
+    return lastCardColor === cardColor || lastCardValue === cardValue;
+  }
+}
+
+
+
+
+
+
 
 function turnChange() {
   if (playedCard[0] === 'S') {
