@@ -193,40 +193,45 @@ function checkCard(livestack, card) {
   const cardValue = card.substring(0, card.length - 1); // Extract card value
 
   // Check if the card is a special card
-  if (cardValue === 'S' || cardValue === 'D' || cardValue === 'R' || cardValue === 'W') {
-    // Handle special cards based on type
-    switch (cardValue) {
-      case 'S': // Skip
-      //current turn +1 if played
-        // Skip can be played on any color (including empty livestack)
-        return true;
-      case 'R': // Reverse
-        // Reverse can be played on any color (including empty livestack)
-        return true;
-      case 'D': // Draw Two
-        // Draw Two can be played on any color, but ideally matching the last card's color if possible
-        return livestack.length === 0 || cardColor === livestack[0]?.[livestack[0].length - 1];
-      case 'W': // Wild
-        // Wild can be played on any color (including empty livestack)
-        // You can also choose a new color after playing Wild
-        return true;
-      default:
-        // This shouldn't happen, but handle unexpected card value
-        console.error("Invalid special card value:", cardValue);
-        return false;
-    }
-  } else {
-    // Check if the card matches the color or value of the top card in the livestack
-    if (livestack.length === 0) {
-      // Livestack is empty, any card can be played except Skip
-      return cardValue !== 'S';
-    } 
-    const lastCard = livestack[0];
-    const lastCardColor = lastCard[lastCard.length - 1]; // Extract last card color
-    const lastCardValue = lastCard.substring(0, lastCard.length - 1); // Extract last card value
+  if (cardValue === 'S' || cardValue === 'D' || cardValue === 'R' || cardValue === 'W' || cardValue === 'Q') {
+      // Handle special cards based on type
+      switch (cardValue) {
+        case 'S': // Q
+        // 'Q' card can only be played if it matches the color of the top card in the live stack
+        return livestack.length === 0 || livestack[0]?.endsWith(cardColor);
+    
+          case 'W': // Q
+          // 'Q' card can only be played if it matches the color of the top card in the live stack
+          return livestack.length === 0 || livestack[0]?.endsWith(cardColor);
+      
+          case 'R': // Q
+    // 'Q' card can only be played if it matches the color of the top card in the live stack
+    return livestack.length === 0 || livestack[0]?.endsWith(cardColor);
 
-    // Check for valid card based on color or value match
-    return lastCardColor === cardColor || lastCardValue === cardValue;
+          case 'Q': // Q
+          // 'Q' card can only be played if it matches the color of the top card in the live stack
+          return livestack.length === 0 || livestack[0]?.endsWith(cardColor);
+      
+          case 'D': // Draw Two
+              // Draw Two can be played on any color, but ideally matching the last card's color if possible
+              return livestack.length === 0 || livestack[0]?.endsWith(cardColor); // Check if the color of the top card matches the color of the special card
+          default:
+              // This shouldn't happen, but handle unexpected card value
+              console.error("Invalid special card value:", cardValue);
+              return false;
+      }
+  } else {
+      // Check if the card matches the color or value of the top card in the livestack
+      if (livestack.length === 0) {
+          // Livestack is empty, any card can be played except Skip
+          return cardValue !== 'S';
+      }
+      const lastCard = livestack[0];
+      const lastCardColor = lastCard[lastCard.length - 1]; // Extract last card color
+      const lastCardValue = lastCard.substring(0, lastCard.length - 1); // Extract last card value
+
+      // Check for valid card based on color or value match
+      return lastCardColor === cardColor || lastCardValue === cardValue;
   }
 }
 
